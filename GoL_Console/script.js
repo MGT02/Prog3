@@ -9,6 +9,9 @@ const readline = require('readline');
 console.reset = function () {
   return process.stdout.write('\033c');
 }
+console.resetCursorPosition = function(){
+	return process.stdout.write('\033[0;0H');
+}
 
 readline.emitKeypressEvents(process.stdin);
 process.stdin.setRawMode(true);
@@ -25,7 +28,8 @@ var map = "";
 
 function drawMatrix() 
 {
-	console.reset();
+	//console.reset();
+	console.resetCursorPosition();
 	for (var i = 0; i < data.n; i++) 
 	{
 		for (var j = 0; j < data.m; j++) 
@@ -156,6 +160,7 @@ process.stdin.on('keypress', (str, key) => {
   }
 });
 
+console.reset();
 data.setup();
 drawMatrix();
 setInterval(draw, 50);
