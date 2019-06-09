@@ -1,0 +1,1 @@
+const data = require("./classes/Data");
